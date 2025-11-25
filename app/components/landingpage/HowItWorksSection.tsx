@@ -2,65 +2,63 @@
 
 import { useState, useRef, useEffect } from "react";
 import SectionContainer from "./SectionContainer";
-
-const steps = [
-  {
-    title: "Share Your Legal Issue",
-    description:
-      "Pick your case type — family, property, civil, criminal, corporate — and tell us what you need help with.",
-    icon: (
-      <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-      </svg>
-    ),
-    gradient: "from-emerald-500 to-emerald-600",
-    bgGradient: "from-emerald-50 via-white to-emerald-50/30",
-  },
-  {
-    title: "Get Matched with Lawyers",
-    description:
-      "See verified lawyers that fit your issue, location, language, and budget. Use AI suggestions or manual search.",
-    icon: (
-      <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-      </svg>
-    ),
-    gradient: "from-blue-500 to-blue-600",
-    bgGradient: "from-blue-50 via-white to-blue-50/30",
-  },
-  {
-    title: "Book & Connect Securely",
-    description:
-      "Choose a time that works for you, pay online, and connect via chat or call through CounselConnect.",
-    icon: (
-      <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-      </svg>
-    ),
-    gradient: "from-purple-500 to-purple-600",
-    bgGradient: "from-purple-50 via-white to-purple-50/30",
-  },
-  {
-    title: "Track Your Case Progress",
-    description:
-      "Follow updates, hearing dates, and documents in one simple timeline, instead of scattered WhatsApp chats.",
-    icon: (
-      <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-      </svg>
-    ),
-    gradient: "from-amber-500 to-amber-600",
-    bgGradient: "from-amber-50 via-white to-amber-50/30",
-  },
-];
+import { useLanguage } from "@/app/i18n/LanguageContext";
 
 export default function HowItWorksSection() {
+  const { t, language } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [currentTranslate, setCurrentTranslate] = useState(0);
   const [prevTranslate, setPrevTranslate] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
+
+  const steps = [
+    {
+      title: t.howItWorks.step1.title,
+      description: t.howItWorks.step1.description,
+      icon: (
+        <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+      ),
+      gradient: "from-emerald-500 to-emerald-600",
+      bgGradient: "from-emerald-50 via-white to-emerald-50/30",
+    },
+    {
+      title: t.howItWorks.step2.title,
+      description: t.howItWorks.step2.description,
+      icon: (
+        <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      ),
+      gradient: "from-blue-500 to-blue-600",
+      bgGradient: "from-blue-50 via-white to-blue-50/30",
+    },
+    {
+      title: t.howItWorks.step3.title,
+      description: t.howItWorks.step3.description,
+      icon: (
+        <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+      ),
+      gradient: "from-purple-500 to-purple-600",
+      bgGradient: "from-purple-50 via-white to-purple-50/30",
+    },
+    {
+      title: t.howItWorks.step4.title,
+      description: t.howItWorks.step4.description,
+      icon: (
+        <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+      ),
+      gradient: "from-amber-500 to-amber-600",
+      bgGradient: "from-amber-50 via-white to-amber-50/30",
+    },
+  ];
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setIsDragging(true);
@@ -97,16 +95,15 @@ export default function HowItWorksSection() {
 
   return (
     <SectionContainer id="how-it-works">
-      <div className="mb-10 text-center md:mb-14">
-        <p className="text-xs font-bold tracking-[0.25em] text-emerald-600 uppercase">
-          How It Works
+      <div className="mb-10 text-center md:mb-14" style={{ direction: language === "ur" ? "rtl" : "ltr" }}>
+        <p className="text-xs font-bold tracking-[0.25em] text-emerald-600 uppercase" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
+          {t.howItWorks.tag}
         </p>
-        <h2 className="mt-3 text-3xl font-bold text-slate-900 md:text-4xl">
-          From Confusion to <span className="text-emerald-600">Clarity</span> in Four Steps
+        <h2 className="mt-3 text-3xl font-bold text-slate-900 md:text-4xl" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
+          {t.howItWorks.heading} <span className="text-emerald-600">{t.howItWorks.clarity}</span> {t.howItWorks.headingEnd}
         </h2>
-        <p className="mt-4 text-base text-slate-600 md:text-lg max-w-3xl mx-auto leading-relaxed">
-          CounselConnect guides you from "I don't know where to start" to
-          "I know who my lawyer is and what's happening next."
+        <p className="mt-4 text-base text-slate-600 md:text-lg max-w-3xl mx-auto leading-relaxed" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
+          {t.howItWorks.description}
         </p>
         
         {/* accent line */}
@@ -173,7 +170,7 @@ export default function HowItWorksSection() {
                   index === activeIndex 
                     ? 'border-emerald-300 scale-100' 
                     : 'border-slate-200 scale-95 opacity-60'
-                } transition-all duration-500`}>
+                } transition-all duration-500`} style={{ direction: language === "ur" ? "rtl" : "ltr" }}>
                   {/* Decorative elements */}
                   <div className="absolute -right-6 -top-6 h-32 w-32 rounded-full bg-emerald-400/20 blur-3xl" />
                   <div className="absolute -left-6 -bottom-6 h-24 w-24 rounded-full bg-blue-400/15 blur-2xl" />
@@ -192,10 +189,10 @@ export default function HowItWorksSection() {
                     {step.icon}
                   </div>
 
-                  <h3 className="relative text-2xl font-bold text-slate-900 mb-4">
+                  <h3 className="relative text-2xl font-bold text-slate-900 mb-4" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
                     {step.title}
                   </h3>
-                  <p className="relative text-base text-slate-600 leading-relaxed">
+                  <p className="relative text-base text-slate-600 leading-relaxed" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
                     {step.description}
                   </p>
 
@@ -239,11 +236,11 @@ export default function HowItWorksSection() {
 
         {/* Swipe Hint */}
         <div className="mt-6 flex items-center justify-center gap-2 text-sm text-slate-500">
-          <svg className="h-5 w-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className={`h-5 w-5 animate-pulse ${language === "ur" ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
           </svg>
-          <span>Swipe to explore</span>
-          <svg className="h-5 w-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <span style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>{t.howItWorks.swipeHint}</span>
+          <svg className={`h-5 w-5 animate-pulse ${language === "ur" ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
         </div>

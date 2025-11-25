@@ -3,59 +3,59 @@
 import Image from "next/image";
 import SectionContainer from "./SectionContainer";
 import { useState } from "react";
-
-const visuals = [
-  {
-    label: "For Clients",
-    title: "Find verified lawyers without running from office to office",
-    description:
-      "Browse verified profiles, see expertise and ratings, and choose the lawyer that fits your case, city, and language.",
-    image: "/legalclient.jpg",
-    color: "emerald",
-  },
-  {
-    label: "Secure Case File",
-    title: "Keep your case documents and updates in one secure place",
-    description:
-      "Upload agreements, notices, and evidence once and access them anytime. No more scattered WhatsApp and paper files.",
-    image: "/legaldocument.jpg",
-    color: "blue",
-  },
-  {
-    label: "Hearings & Deadlines",
-    title: "Never lose track of hearings and important dates",
-    description:
-      "CounselConnect reminds you and your lawyer about upcoming hearings so nothing slips through the cracks.",
-    image: "/legalhearing.jpg",
-    color: "amber",
-  },
-  {
-    label: "For Lawyers",
-    title: "A modern workspace for Pakistani lawyers",
-    description:
-      "Manage clients, hearings, notes, and earnings from one dashboard that works on both mobile and desktop.",
-    image: "/lawyerdesk.jpg",
-    color: "slate",
-  },
-];
+import { useLanguage } from "@/app/i18n/LanguageContext";
 
 export default function ProductVisualSection() {
+  const { t, language } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
+
+  const visuals = [
+    {
+      label: t.productVisual.feature1.label,
+      title: t.productVisual.feature1.title,
+      description: t.productVisual.feature1.description,
+      cta: t.productVisual.feature1.cta,
+      image: "/legalclient.jpg",
+      color: "emerald",
+    },
+    {
+      label: t.productVisual.feature2.label,
+      title: t.productVisual.feature2.title,
+      description: t.productVisual.feature2.description,
+      cta: t.productVisual.feature2.cta,
+      image: "/legaldocument.jpg",
+      color: "blue",
+    },
+    {
+      label: t.productVisual.feature3.label,
+      title: t.productVisual.feature3.title,
+      description: t.productVisual.feature3.description,
+      cta: t.productVisual.feature3.cta,
+      image: "/legalhearing.jpg",
+      color: "amber",
+    },
+    {
+      label: t.productVisual.feature4.label,
+      title: t.productVisual.feature4.title,
+      description: t.productVisual.feature4.description,
+      cta: t.productVisual.feature4.cta,
+      image: "/lawyerdesk.jpg",
+      color: "slate",
+    },
+  ];
 
   return (
     <SectionContainer id="product-visuals">
       {/* Heading */}
-      <div className="mb-10 text-center md:mb-14">
-        <p className="text-xs font-bold tracking-[0.25em] text-emerald-600 uppercase">
-          Real Legal Workflows
+      <div className="mb-10 text-center md:mb-14" style={{ direction: language === "ur" ? "rtl" : "ltr" }}>
+        <p className="text-xs font-bold tracking-[0.25em] text-emerald-600 uppercase" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
+          {t.productVisual.realWorkflows}
         </p>
-        <h2 className="mt-3 text-3xl font-bold text-slate-900 md:text-4xl">
-          See Where <span className="text-emerald-600">CounselConnect</span> Fits Into Your Journey
+        <h2 className="mt-3 text-3xl font-bold text-slate-900 md:text-4xl" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
+          {t.productVisual.seeWhere}
         </h2>
-        <p className="mt-4 max-w-3xl mx-auto text-base text-slate-600 md:text-lg leading-relaxed">
-          From the first search for a lawyer to the last hearing date, each step
-          is supported with secure, digital tools that work for both clients and
-          lawyers in Pakistan.
+        <p className="mt-4 max-w-3xl mx-auto text-base text-slate-600 md:text-lg leading-relaxed" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
+          {t.productVisual.journeyDescription}
         </p>
         
         {/* accent line */}
@@ -72,6 +72,7 @@ export default function ProductVisualSection() {
           <div
             key={item.title}
             className="group relative overflow-hidden rounded-3xl border-2 border-slate-200 bg-white shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-emerald-300"
+            style={{ direction: language === "ur" ? "rtl" : "ltr" }}
           >
             {/* Decorative blur */}
             <div className="absolute -right-6 -top-6 h-32 w-32 rounded-full bg-emerald-400/10 blur-3xl group-hover:bg-emerald-400/20 transition-all" />
@@ -87,8 +88,8 @@ export default function ProductVisualSection() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
               
               {/* Label on image */}
-              <div className="absolute top-4 left-4">
-                <span className={`inline-flex items-center rounded-full bg-${item.color}-500 bg-opacity-90 backdrop-blur-sm px-3 py-1.5 text-xs font-bold text-white shadow-lg`}>
+              <div className={`absolute top-4 ${language === "ur" ? "right-4" : "left-4"}`}>
+                <span className={`inline-flex items-center rounded-full bg-${item.color}-500 bg-opacity-90 backdrop-blur-sm px-3 py-1.5 text-xs font-bold text-white shadow-lg`} style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
                   {item.label}
                 </span>
               </div>
@@ -96,17 +97,17 @@ export default function ProductVisualSection() {
 
             {/* Content */}
             <div className="relative p-6 lg:p-7">
-              <h3 className="text-lg font-bold text-slate-900 lg:text-xl">
+              <h3 className="text-lg font-bold text-slate-900 lg:text-xl" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
                 {item.title}
               </h3>
-              <p className="mt-3 text-sm text-slate-600 leading-relaxed lg:text-base">
+              <p className="mt-3 text-sm text-slate-600 leading-relaxed lg:text-base" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
                 {item.description}
               </p>
               
               {/* Learn more link */}
               <div className="mt-4 flex items-center gap-2 text-sm font-semibold text-emerald-600 group-hover:gap-3 transition-all">
-                <span>Learn more</span>
-                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <span style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>{item.cta}</span>
+                <svg className={`h-4 w-4 ${language === "ur" ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </div>
@@ -118,7 +119,7 @@ export default function ProductVisualSection() {
       {/* Mobile Slider View */}
       <div className="md:hidden">
         {/* Active Card */}
-        <div className="relative overflow-hidden rounded-3xl border-2 border-emerald-200 bg-white shadow-xl">
+        <div className="relative overflow-hidden rounded-3xl border-2 border-emerald-200 bg-white shadow-xl" style={{ direction: language === "ur" ? "rtl" : "ltr" }}>
           <div className="absolute -right-6 -top-6 h-32 w-32 rounded-full bg-emerald-400/10 blur-3xl" />
           
           {/* Image */}
@@ -132,8 +133,8 @@ export default function ProductVisualSection() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
             
             {/* Label on image */}
-            <div className="absolute top-4 left-4">
-              <span className="inline-flex items-center rounded-full bg-emerald-500 bg-opacity-90 backdrop-blur-sm px-3 py-1.5 text-xs font-bold text-white shadow-lg">
+            <div className={`absolute top-4 ${language === "ur" ? "right-4" : "left-4"}`}>
+              <span className="inline-flex items-center rounded-full bg-emerald-500 bg-opacity-90 backdrop-blur-sm px-3 py-1.5 text-xs font-bold text-white shadow-lg" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
                 {visuals[activeIndex].label}
               </span>
             </div>
@@ -141,10 +142,10 @@ export default function ProductVisualSection() {
 
           {/* Content */}
           <div className="relative p-6">
-            <h3 className="text-xl font-bold text-slate-900">
+            <h3 className="text-xl font-bold text-slate-900" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
               {visuals[activeIndex].title}
             </h3>
-            <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+            <p className="mt-3 text-sm text-slate-600 leading-relaxed" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
               {visuals[activeIndex].description}
             </p>
           </div>
