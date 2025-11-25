@@ -1,20 +1,23 @@
-// app/components/landing/AudienceSection.tsx
+"use client";
+
 import SectionContainer from "./SectionContainer";
+import { useLanguage } from "@/app/i18n/LanguageContext";
 
 export default function AudienceSection() {
+  const { t, language } = useLanguage();
+  
   return (
     <SectionContainer id="audience">
       {/* Heading block */}
-      <div className="mb-10 text-center md:mb-14">
-        <p className="text-xs font-bold tracking-[0.25em] text-emerald-600 uppercase">
-          Who We Serve
+      <div className="mb-10 text-center md:mb-14" style={{ direction: language === "ur" ? "rtl" : "ltr" }}>
+        <p className="text-xs font-bold tracking-[0.25em] text-emerald-600 uppercase" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
+          {t.audience.tag}
         </p>
-        <h2 className="mt-3 text-3xl font-bold text-slate-900 md:text-4xl">
-          Built for <span className="text-emerald-600">Clients</span> &amp; <span className="text-slate-700">Lawyers</span>
+        <h2 className="mt-3 text-3xl font-bold text-slate-900 md:text-4xl" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
+          {t.audience.heading} <span className="text-emerald-600">{t.audience.clients}</span> {t.audience.and} <span className="text-slate-700">{t.audience.lawyers}</span>
         </h2>
-        <p className="mt-4 max-w-3xl mx-auto text-base text-slate-600 md:text-lg leading-relaxed">
-          CounselConnect bridges the gap between justice seekers and legal professionals,
-          creating a modern platform that empowers both sides of the legal journey.
+        <p className="mt-4 max-w-3xl mx-auto text-base text-slate-600 md:text-lg leading-relaxed" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
+          {t.audience.description}
         </p>
 
         {/* accent line under heading */}
@@ -28,7 +31,7 @@ export default function AudienceSection() {
       {/* Cards grid */}
       <div className="grid gap-6 md:grid-cols-2 md:gap-8">
         {/* Clients card */}
-        <div className="group relative overflow-hidden rounded-3xl border-2 border-emerald-200 bg-gradient-to-br from-emerald-50 via-white to-emerald-50/30 p-6 shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-emerald-300 md:p-8">
+        <div className="group relative overflow-hidden rounded-3xl border-2 border-emerald-200 bg-gradient-to-br from-emerald-50 via-white to-emerald-50/30 p-6 shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-emerald-300 md:p-8" style={{ direction: language === "ur" ? "rtl" : "ltr" }}>
           {/* Decorative elements */}
           <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-emerald-400/20 blur-3xl" />
           <div className="absolute -left-6 -bottom-6 h-24 w-24 rounded-full bg-sky-400/15 blur-2xl" />
@@ -45,52 +48,58 @@ export default function AudienceSection() {
             </div>
 
             <div className="mb-3 flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-bold text-emerald-700 uppercase tracking-wide">
-                For Clients
-              </span>
-              <span className="text-xs text-slate-500 font-semibold">
-                Individuals &amp; Families
+              <span className="inline-flex items-center rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-bold text-emerald-700 uppercase tracking-wide" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
+                {t.audience.clientCard.badge}
               </span>
             </div>
 
-            <h3 className="text-xl font-bold text-slate-900 md:text-2xl">
-              Access Justice with <span className="text-emerald-600">Confidence</span>
+            <h3 className="text-xl font-bold text-slate-900 md:text-2xl" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
+              {t.audience.clientCard.title}
             </h3>
 
-            <p className="mt-3 text-sm text-slate-600 leading-relaxed md:text-base md:mt-4">
-              Navigate your legal journey with verified lawyers, transparent pricing, 
-              and complete case tracking—in English or Urdu, from your phone.
+            <p className="mt-3 text-sm text-slate-600 leading-relaxed md:text-base md:mt-4" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
+              {t.audience.clientCard.subtitle}
             </p>
 
             <ul className="mt-4 space-y-2.5 md:mt-6 md:space-y-3">
               <li className="flex gap-2.5 items-start md:gap-3">
-                <div className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500 md:h-6 md:w-6">
+                <div className={`mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500 md:h-6 md:w-6 ${language === "ur" ? "order-last" : ""}`}>
                   <svg className="h-3 w-3 text-white md:h-3.5 md:w-3.5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <span className="text-sm text-slate-700 font-medium">
-                  <strong className="text-slate-900">Smart Search:</strong> Find lawyers by city, expertise, language & budget
+                <span className="text-sm text-slate-700 font-medium" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
+                  {t.audience.clientCard.benefit1}
                 </span>
               </li>
               <li className="flex gap-2.5 items-start md:gap-3">
-                <div className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500 md:h-6 md:w-6">
+                <div className={`mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500 md:h-6 md:w-6 ${language === "ur" ? "order-last" : ""}`}>
                   <svg className="h-3 w-3 text-white md:h-3.5 md:w-3.5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <span className="text-sm text-slate-700 font-medium">
-                  <strong className="text-slate-900">AI-Matching:</strong> Get personalized lawyer recommendations instantly
+                <span className="text-sm text-slate-700 font-medium" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
+                  {t.audience.clientCard.benefit2}
                 </span>
               </li>
               <li className="flex gap-2.5 items-start md:gap-3">
-                <div className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500 md:h-6 md:w-6">
+                <div className={`mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500 md:h-6 md:w-6 ${language === "ur" ? "order-last" : ""}`}>
                   <svg className="h-3 w-3 text-white md:h-3.5 md:w-3.5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <span className="text-sm text-slate-700 font-medium">
-                  <strong className="text-slate-900">Case Hub:</strong> Track timeline, documents & updates securely
+                <span className="text-sm text-slate-700 font-medium" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
+                  {t.audience.clientCard.benefit3}
+                </span>
+              </li>
+              <li className="flex gap-2.5 items-start md:gap-3">
+                <div className={`mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500 md:h-6 md:w-6 ${language === "ur" ? "order-last" : ""}`}>
+                  <svg className="h-3 w-3 text-white md:h-3.5 md:w-3.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <span className="text-sm text-slate-700 font-medium" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
+                  {t.audience.clientCard.benefit4}
                 </span>
               </li>
             </ul>
@@ -98,7 +107,7 @@ export default function AudienceSection() {
         </div>
 
         {/* Lawyers card */}
-        <div className="group relative overflow-hidden rounded-3xl border-2 border-slate-300 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 p-6 shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-slate-400 md:p-8">
+        <div className="group relative overflow-hidden rounded-3xl border-2 border-slate-300 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 p-6 shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-slate-400 md:p-8" style={{ direction: language === "ur" ? "rtl" : "ltr" }}>
           {/* Decorative elements */}
           <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-slate-600/20 blur-3xl" />
           <div className="absolute -left-6 -bottom-6 h-24 w-24 rounded-full bg-blue-500/15 blur-2xl" />
@@ -115,52 +124,58 @@ export default function AudienceSection() {
             </div>
 
             <div className="mb-3 flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center rounded-full bg-slate-200 px-2.5 py-1 text-xs font-bold text-slate-800 uppercase tracking-wide">
-                For Lawyers
-              </span>
-              <span className="text-xs text-slate-500 font-semibold">
-                Advocates &amp; Law Firms
+              <span className="inline-flex items-center rounded-full bg-slate-200 px-2.5 py-1 text-xs font-bold text-slate-800 uppercase tracking-wide" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
+                {t.audience.lawyerCard.badge}
               </span>
             </div>
 
-            <h3 className="text-xl font-bold text-slate-900 md:text-2xl">
-              Elevate Your <span className="text-slate-700">Legal Practice</span>
+            <h3 className="text-xl font-bold text-slate-900 md:text-2xl" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
+              {t.audience.lawyerCard.title}
             </h3>
 
-            <p className="mt-3 text-sm text-slate-600 leading-relaxed md:text-base md:mt-4">
-              Streamline your workflow, expand your client base, and manage your practice 
-              with modern tools designed for Pakistani legal professionals.
+            <p className="mt-3 text-sm text-slate-600 leading-relaxed md:text-base md:mt-4" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
+              {t.audience.lawyerCard.subtitle}
             </p>
 
             <ul className="mt-4 space-y-2.5 md:mt-6 md:space-y-3">
               <li className="flex gap-2.5 items-start md:gap-3">
-                <div className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-slate-700 md:h-6 md:w-6">
+                <div className={`mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-slate-700 md:h-6 md:w-6 ${language === "ur" ? "order-last" : ""}`}>
                   <svg className="h-3 w-3 text-white md:h-3.5 md:w-3.5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <span className="text-sm text-slate-700 font-medium">
-                  <strong className="text-slate-900">Verified Profile:</strong> Showcase expertise, credentials & client reviews
+                <span className="text-sm text-slate-700 font-medium" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
+                  {t.audience.lawyerCard.benefit1}
                 </span>
               </li>
               <li className="flex gap-2.5 items-start md:gap-3">
-                <div className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-slate-700 md:h-6 md:w-6">
+                <div className={`mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-slate-700 md:h-6 md:w-6 ${language === "ur" ? "order-last" : ""}`}>
                   <svg className="h-3 w-3 text-white md:h-3.5 md:w-3.5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <span className="text-sm text-slate-700 font-medium">
-                  <strong className="text-slate-900">Smart Scheduling:</strong> Manage appointments, availability & breaks
+                <span className="text-sm text-slate-700 font-medium" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
+                  {t.audience.lawyerCard.benefit2}
                 </span>
               </li>
               <li className="flex gap-2.5 items-start md:gap-3">
-                <div className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-slate-700 md:h-6 md:w-6">
+                <div className={`mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-slate-700 md:h-6 md:w-6 ${language === "ur" ? "order-last" : ""}`}>
                   <svg className="h-3 w-3 text-white md:h-3.5 md:w-3.5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <span className="text-sm text-slate-700 font-medium">
-                  <strong className="text-slate-900">Practice Dashboard:</strong> Case notes, documents & earnings in one place
+                <span className="text-sm text-slate-700 font-medium" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
+                  {t.audience.lawyerCard.benefit3}
+                </span>
+              </li>
+              <li className="flex gap-2.5 items-start md:gap-3">
+                <div className={`mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-slate-700 md:h-6 md:w-6 ${language === "ur" ? "order-last" : ""}`}>
+                  <svg className="h-3 w-3 text-white md:h-3.5 md:w-3.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <span className="text-sm text-slate-700 font-medium" style={{ fontFamily: language === "ur" ? "system-ui" : "inherit" }}>
+                  {t.audience.lawyerCard.benefit4}
                 </span>
               </li>
             </ul>
